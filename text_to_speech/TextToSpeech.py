@@ -32,13 +32,12 @@ class TextToSpeech(object):
         xml_body = ElementTree.Element('speak', version='1.0')
         xml_body.set('{http://www.w3.org/XML/1998/namespace}lang', 'en-us')
         voice = ElementTree.SubElement(xml_body, 'voice')
-        voice.set('{http://www.w3.org/XML/1998/namespace}lang', 'NL-NL')
-        voice.set('name', 'Microsoft Server Speech Text to Speech Voice (nl-NL, nl-NL-HannaRUS)')
-        # voice.text = self.tts
-        voice_text = tts
+        voice.set('{http://www.w3.org/XML/1998/namespace}lang', 'en-US')
+        voice.set('name', 'Microsoft Server Speech Text to Speech Voice (nl-NL, HannaRUS)')
+        voice.text = tts
         body = ElementTree.tostring(xml_body)
         filename = 'sounds/sample-' + self.timestr + '.wav'
-        response = requests.post(constructed_url, headers=headers, data=body)
+        response = requests.post(constructed_url, headers=headers, data=body, stream=True)
         if response.status_code == 200:
             with open(filename, 'wb') as audio:
                 audio.write(response.content)
