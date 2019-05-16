@@ -19,7 +19,7 @@ class TextToSpeech(object):
         response = requests.post(fetch_token_url, headers=headers)
         self.access_token = str(response.text)
 
-    def save_audio(self, tts):
+    def save_audio(self, tts, repeated=False,):
         base_url = 'https://westeurope.tts.speech.microsoft.com/'
         path = 'cognitiveservices/v1'
         constructed_url = base_url + path
@@ -36,7 +36,10 @@ class TextToSpeech(object):
         voice.set('name', 'Microsoft Server Speech Text to Speech Voice (nl-NL, HannaRUS)')
         voice.text = tts
         body = ElementTree.tostring(xml_body)
-        filename = 'sounds/sample-' + self.timestr + '.wav'
+        if repeated:
+            filename = 'sounds/repeated/sample-' + self.timestr + '.wav'
+        else:
+            filename = 'sounds/sample-' + self.timestr + '.wav'
         response = requests.post(constructed_url, headers=headers, data=body, stream=True)
         if response.status_code == 200:
             with open(filename, 'wb') as audio:

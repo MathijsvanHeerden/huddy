@@ -37,7 +37,6 @@
 
     <!-- Hotjar Tracking Code for https://monitor.verticaldata.com -->
 
-    {% if not user.is_staff and user.is_authenticated %}
     <script>
         (function(h,o,t,j,a,r){
             h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
@@ -48,7 +47,6 @@
             a.appendChild(r);
         })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
     </script>
-    {% endif %}
 
     <!-- CSS
     ================================================== -->
@@ -151,7 +149,8 @@
                             <nav id="navigation" class="style-1">
                                 <ul id="responsive">
                                     <li><a href="{% url 'home' %}" {% if request.path == "/" %} class="current" {% endif %}>Home</a></li>
-
+                                    <li><a href="{% url 'repeat' %}" {% if 'repeat' in request.path %} class="current" {% endif %}> Herhalend </a> </li>
+                                    <li><a href="{% url 'play' %}" {% if 'play' in request.path %} class="current" {% endif %}> Afspelen </a></li>
                                 </ul>
 
                 </div>

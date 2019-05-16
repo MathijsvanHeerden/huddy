@@ -19,5 +19,7 @@ from duddy import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.index, name='home')
+    path('', views.index, name='home'),
+    path('repeat', views.repeat, name='repeat'),
+    path('play', views.play, name='play')
 ]
