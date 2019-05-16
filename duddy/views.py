@@ -39,11 +39,14 @@ def repeat(request):
     return render(request, 'repeat.html', context)
 
 
-def play(request, sound):
+def play(request):
     sounds = models.RepeatedMessage.objects.all()
+    sound = request.GET.get('sound')
+    if sound:
+        app = TextToSpeech()
+        app.get_token()
+        pass
     context = {
-        'sounds': sounds
+        'sounds': sounds,
     }
-    app = TextToSpeech()
-    app.get_token()
-    pass
+    return render(request, 'play.html', context)

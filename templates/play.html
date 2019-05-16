@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <table class="manage-table margin-top-20">
+    <tbody>
+        <tr>
+        <th> Interval</th>
+        <th> Tijd</th>
+        <th> Tekst</th>
+        </tr>
+        {% for sound in sounds %}
+        <tr>
+            <td> {{ sound.interval }}</td>
+            <td> {{ sound.time }}</td>
+            <td> {{ sound.messageText }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+    </table>
+
+{% endblock %}
