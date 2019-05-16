@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<form method="POST" action="">
+    <label for="tts">Verzend tekst:</label>
+    <input type="text" id="tts" name="tts">
+    <input type="submit" value="Verzend">
+{% csrf_token %}
+</form>
+
+{% endblock %}
